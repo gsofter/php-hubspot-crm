@@ -11,7 +11,7 @@ $pledge_app = [
 	'grant_type' 	=> 'authorization_code',
 	'client_id' 	=> '6ab64848-6b7f-4724-8abc-19249e071491',
 	'client_secret' => '5c480ff0-c1c3-445c-9756-5dece1078f96',
-	'redirect_uri' 	=> 'http://localhost/test.php',
+	'redirect_uri' 	=> 'https://gyeworld.com/crmtest/test.php',
 	'code'			=> $code, 
 ];
 
@@ -62,6 +62,7 @@ if($response['status'] != 204) {
 // 	'label' => 'Webinar Name',
 // 	'propertyType' => 'String',
 // ];
+// $appid = "209737";
 // $response = TimelineAPI::SetEventProperties($etypeid, $property);
 // echo json_encode($response);
 

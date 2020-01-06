@@ -171,12 +171,12 @@ class TimelineAPI {
 	/**
 	* Set Event Properties for given event_type_id
 	*
+	* @param string $appid
 	* @param int $etypeid
 	* @param array $array
 	* @return status, response
 	*/
-	public static function SetEventProperties($etypeid, $array) {
-		$appid = "209702";
+	public static function SetEventProperties($appid, $etypeid, $array) {
 		$devhapikey = "3606359a-4148-401f-976a-7b888453aaff";
 		$endpoint = "https://api.hubapi.com/integrations/v1/". $appid."/timeline/event-types/".$etypeid."/properties?hapikey=".$devhapikey;
 		$ch = curl_init();
