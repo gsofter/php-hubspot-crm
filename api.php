@@ -255,7 +255,98 @@ class AuthAPI {
 			'response' 	=> $response,
 		];
 	}
+}
 
+class HubDBAPI {
+	/**
+	* Get all 
+	*
+	* @param string $hapikey
+	* 
+	*/
+	public static function GetAllTables($hapikey) {
+		$endpoint = "https://api.hubapi.com/hubdb/api/v2/tables?hapikey=".$hapikey;
+		$ch = curl_init();
+		curl_setopt($ch, CURLOPT_URL, $endpoint);
+		curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/json'));
+		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+		$response = curl_exec($ch);
+		$status_code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+		@curl_close($ch);
+		return [
+			'status' => $status_code,
+			'response' => $response,
+		];
+	}
 
+	/**
+	* Create a new Table
+	*
+	* @param string $hapikey
+	* @param array $data
+	* 
+	*/
+	public static function CreateTable($hapikey, $data) {
+		$endpoint = "https://api.hubapi.com/hubdb/api/v2/tables?hapikey=".$hapikey;
+		$ch = curl_init();
+		curl_setopt($ch, CURLOPT_URL, $endpoint);
+		curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/json'));
+		curl_setopt($ch, CURLOPT_POST, true);
+		curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($data));
+		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+		$response = curl_exec($ch);
+		$status_code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+		@curl_close($ch);
+		return [
+			'status' => $status_code,
+			'response' => $response,
+		];
+	}
+
+	/**
+	* Get Table Rows
+	*
+	* @param string $hapikey
+	* @param string $portalId
+	* 
+	*/
+	public static function GetTableRows($portalId, $tblId) {
+		$endpoint = "https://api.hubapi.com/hubdb/api/v2/tables/".$tblId."/rows?portalId=".$portalId;
+		$ch = curl_init();
+		curl_setopt($ch, CURLOPT_URL, $endpoint);
+		curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/json'));
+		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+		$response = curl_exec($ch);
+		$status_code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+		@curl_close($ch);
+		return [
+			'status' => $status_code,
+			'response' => $response,
+		];	
+	}
+	/**
+	* Add a new row to table
+	*
+	* @param string $hapikey
+	* @param string $tblId
+	* @param array $row
+	* 
+	*/
+	public static function InsertRow($hapikey, $tblId, $row) {
+		$endpoint = "https://api.hubapi.com/hubdb/api/v2/tables/".$tblId."/rows?hapikey=".$hapikey;
+		$ch = curl_init();
+		curl_setopt($ch, CURLOPT_URL, $endpoint);
+		curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/json'));
+		curl_setopt($ch, CURLOPT_POST, true);
+		curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($row));
+		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+		$response = curl_exec($ch);
+		$status_code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+		@curl_close($ch);
+		return [
+			'status' => $status_code,
+			'response' => $response,
+		];
+	}
 }
 ?>
