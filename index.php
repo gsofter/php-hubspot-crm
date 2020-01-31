@@ -8,6 +8,9 @@
 require_once __DIR__ . '/api.php';
 $contactResponse = ContactAPI::GetContactProfileById(101);
 $userdata = [];
+echo json_encode($contactResponse);
+exit;
+
 if($contactResponse['status'] != 200) {
 	echo "API server error";
 	exit();
@@ -137,7 +140,7 @@ if($crmResponse['status'] != 200) {
 						<td> <?php echo $call['created_at']; ?> </td>
 						<td> <?php echo $call['updated_at']; ?> </td>
 					</tr>
-				<?php } ?>		
+				<?php } ?>
 				</tbody>
 			</table>
 		</div> 

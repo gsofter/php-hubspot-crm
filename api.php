@@ -304,6 +304,23 @@ class HubDBAPI {
 	}
 
 	/**
+	* Update a Table
+	*
+	* @param string $hapikey
+	* @param string $tblId
+	* @param array $data
+	* 
+	*/
+	public static function UpdateTable($hapikey, $tblId, $data) {
+		$endpoint = "https://api.hubapi.com/hubdb/api/v2/tables/360123?hapikey=".$hapikey;
+		$ch = curl_init();
+		curl_setopt($ch, CURLOPT_URL, $endpoint);
+		curl_setopt($ch, CURLOPT_HEADER, array('Content-Type: application/json'));
+		curl_setopt($ch, CURLOPT_POST, true);
+		curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($data));
+	}
+
+	/**
 	* Get Table Rows
 	*
 	* @param string $hapikey
@@ -346,6 +363,54 @@ class HubDBAPI {
 		return [
 			'status' => $status_code,
 			'response' => $response,
+		];
+	}
+}
+
+class CalendarAPI {
+	/**
+	* Get a even
+	* 
+	* @param string $hapikey
+	* @param string $start_date
+	* @param string $end_date
+	* @param int $limit
+	*/
+	public function GetCalendarEvents($hapikey, $start_date, $end_date, $limit=2) {
+		$endpoint = "https://api.hubapi.com/calendar/v1/events?startDate=".$start_date."&endDate=".$end_date."&limit=2&hapikey=".$hapikey;
+		$ch = curl_init();
+		curl_setopt($ch, CURLOPT_URL, $endpoint);
+		curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/json'));
+		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+		$response = curl_exec($ch);
+		$status_code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+		@curl_close($ch);
+		return [
+			'status' 	=> $status_code,
+			'response' 	=> $response,
+		];
+	}
+
+	/**
+	* Get a even
+	* 
+	* @param string $hapikey
+	* @param array $data
+	*/
+	public static function CreateCalendarEvent($hapikey, $data) {
+		$endpoint = "https://api.hubapi.com/calendar/v1/events/task?hapikey=" . $hapikey;
+		$ch = curl_init();
+		curl_setopt($ch, CURLOPT_URL, $endpoint);
+		curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/json'));
+		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+		curl_setopt($ch, CURLOPT_POST, true);
+		curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($data));
+		$response = curl_exec($ch);
+		$status_code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+		@curl_close($ch);
+		return [
+			'status' 	=> $status_code,
+			'response' 	=> $response,
 		];
 	}
 }

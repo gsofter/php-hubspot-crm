@@ -1,3 +1,4 @@
+<?php require_once __DIR__ . '/../header.php'; ?>
 <?php
 require_once __DIR__ . '/../api.php';
 
@@ -10,20 +11,8 @@ $hubid = '6986385';
 $response = HubDBAPI::GetTableRows($hubid, 2038922);
 $rowData = json_decode($response['response'], true);
 $rows = $rowData['objects'];
-
-echo json_encode($rows);
 ?>
-<!DOCTYPE html>
-<html>
-<head>
-	<title> PHP HUBSPOT CRM | HUBDB API TEST </title>
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/fontawesome.min.css">
-	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-</head>
-<body>
+
 	<div class="jumbotron text-center">
 		<h1> HUBDB API TEST</h1>
 	</div>
@@ -77,7 +66,8 @@ echo json_encode($rows);
 		</div>
 		<hr/>
 		<div class="row"> 
-			<div class="container"> 
+			<div class="container">
+				<h3 class="text-center"> And Row to Pledge</h3>
 				<form method="post" action="addrow.php"> 
 					<div class="form-group">
 						<label for="pledge-name"> Pledge Name</label>
@@ -94,5 +84,5 @@ echo json_encode($rows);
 			</div>
 		</div>
 	</div>
-</body>
-</html>
+	
+<?php require_once __DIR__ . '/../header.php'; ?>
