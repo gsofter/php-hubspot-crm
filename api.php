@@ -369,7 +369,7 @@ class HubDBAPI {
 
 class CalendarAPI {
 	/**
-	* Get a even
+	* Get a event
 	* 
 	* @param string $hapikey
 	* @param string $start_date
@@ -377,7 +377,7 @@ class CalendarAPI {
 	* @param int $limit
 	*/
 	public function GetCalendarEvents($hapikey, $start_date, $end_date, $limit=2) {
-		$endpoint = "https://api.hubapi.com/calendar/v1/events?startDate=".$start_date."&endDate=".$end_date."&limit=2&hapikey=".$hapikey;
+		$endpoint = "https://api.hubapi.com/calendar/v1/events?startDate=".$start_date."&endDate=".$end_date."&limit=100&hapikey=".$hapikey;
 		$ch = curl_init();
 		curl_setopt($ch, CURLOPT_URL, $endpoint);
 		curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/json'));
