@@ -21,38 +21,38 @@ $events = json_decode($response['response'], true);
 <div class="container">
 	<hr/>
 	<div class="row">
-		<div class="container">
+		<div class="container card p-5 col-md-8">
 			<h3 class="text-center"> And Event to Calendar </h3>
 			<form method="post" action="createevent.php"> 
-				<div class="form-group">
-					<label for="event-name"> Event Name </label>
-					<input class="form-control" name="event_name" id="event-name"/>
+				<div class="form-group row">
+					<label for="event-name" class="col-md-3"> Event Name </label>
+					<input class="form-control col-md-9" name="event_name" id="event-name" />
 				</div>
-				<div class="form-group">
-					<label for="event-description"> Event Description </label>
-					<input class="form-control" name="event_description" id="event-description"/>
+				<div class="form-group row">
+					<label for="event-description" class="col-md-3"> Event Description </label>
+					<input class="form-control col-md-9" name="event_description" id="event-description"/>
 				</div>
-				<div class="form-group">
-					<label for="event-date"> Event Date </label>
-					<input class="form-control" name="event_date" id="event-date" type="date"/>
+				<div class="form-group row">
+					<label for="event-date" class="col-md-3"> Event Date </label>
+					<input class="form-control col-md-9" name="event_date" id="event-date" type="date"/>
 				</div>
-				<div class="form-group">
-					<label for="event-state"> Event State </label>
-					<select name="event_state" id="event-state" class="form-control"> 
+				<div class="form-group row">
+					<label for="event-state" class="col-md-3"> Event State </label>
+					<select name="event_state" id="event-state" class="form-control col-md-9"> 
 						<option value="TODO"> TODO </option>
 						<option value="DONE"> DONE </option>
 					</select>
 				</div>
-				<div class="form-group">
-					<label for="event-category"> Event Category </label>
-					<select name="event_category" id="event-category" class="form-control"> 
+				<div class="form-group row">
+					<label for="event-category" class="col-md-3"> Event Category </label>
+					<select name="event_category" id="event-category" class="form-control col-md-9"> 
 						<option value="EMAIL"> EMAIL </option>
 						<option value="LANDING_PAGE"> LANDING_PAGE </option>
 						<option value="CUSTOM"> CUSTOM </option>
 					</select>
 				</div>
-				<div class="form-control"> 
-					<input type="submit" name="submit">
+				<div class="form-group"> 
+					<input type="submit" name="Add" class="btn btn-primary">
 				</div>
 			</form>
 		</div> 

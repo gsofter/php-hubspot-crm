@@ -17,6 +17,12 @@ $pledge_app = [
 $response = AuthAPI::GetOAuthToken($pledge_app);
 if($response['status'] != 200) {
 	require_once __DIR__ . '/../header.php';
+	?>
+	<div class="jumbotron text-center">
+		<h1> TIMELINE API TEST </h1>
+	</div>
+
+	<?php
 	echo "<div class='alert alert-danger' role='alert'>";
 	echo "<h3> Authentication Failed </h3>";
 	echo $response['response'];
@@ -34,6 +40,12 @@ setcookie('access_token', $access_token);
 setcookie('expire', time() + $expires_in);
 
 require_once __DIR__ . "/../header.php";
+?>
+<div class="jumbotron text-center">
+	<h1> CALENDAR API TEST </h1>
+</div>
+
+<?
 echo "<div class='alert alert-success' role='alert'>";
 echo "<h3> Authentication Success </h3>";
 echo "access_token:". $access_token . "<br/>";

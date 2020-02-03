@@ -63,6 +63,33 @@ class ContactAPI {
 		];
 	}
 
+	
+	/**
+	* Create contact
+	*
+	* @param string $hapikey
+	* @param array $data
+	*/
+	public static function CreateContact($hapikey, $data) {
+		$endpoint = 'https://api.hubapi.com/contacts/v1/contact/?hapikey=' . $hapikey;
+		$ch = curl_init();
+		curl_setopt($ch, CURLOPT_URL, $endpoint);
+		curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/json'));
+		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+		curl_setopt($ch, CURLOPT_POST, true);
+		curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($data));
+		$response = curl_exec($ch);
+		$status_code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+		$curl_errors = curl_error($ch);
+		
+		@curl_close($ch);
+		return [
+			'status' => $status_code,
+			'response' 	 => $response,
+		];
+	}
+
+
 	/**
 	* Create or update a group of contacts
 	*
@@ -425,7 +452,6 @@ class CalendarAPI {
 		curl_setopt($ch, CURLOPT_URL, $endpoint);
 		curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/json'));
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-		curl_setopt($ch, CURLOPT_POST, true);
 		curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($data));
 		$response = curl_exec($ch);
 		$status_code = curl_getinfo($ch, CURLINFO_HTTP_CODE);

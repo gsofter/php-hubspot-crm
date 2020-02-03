@@ -1,5 +1,5 @@
 <?php 
 
-header("Location: calendar/index.php");
+header("Location: contact/index.php");
 
 ?>

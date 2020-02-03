@@ -46,7 +46,7 @@ $contacts = $responseData['contacts'];
 	</div>
 	<div class="col-md-6"> 
 		<div class="card p-5">
-			<form>
+			<form action="createcontact.php" method="POST">
 				<div class="form-group row">
 					<label class="col-md-4" for="email"> Email </label>
 					<input type="email" name="email" id="email" class="form-control col-md-8" />

@@ -28,38 +28,40 @@ $email = 'eyes.guard@gmail.com';
 			<?php $date = date('Y-m-d h:i:s', $expire); ?>
 			<p> Token will be expire in <?php echo $date; ?></p>
 		</div>
-		<form method="post" action="createevent.php">
-			<div class="form-group">
-				<label for="email"> Email </label>
-				<input class="form-control" name="email" id="email" value="<?php echo $email; ?>"/>
-			</div>
-			<div class="form-group">
-				<label for="event-id"> Event ID </label>
-				<input class="form-control" name="event_id" id="event-id"/>
-			</div>
-			<div class="form-group">
-				<label for="pledge-amount"> Pledge Amount </label>
-				<input class="form-control" name="pledge_amount" id="pledge-amount" type="number" />
-			</div>
-			<div class="form-group">
-				<label for="access-token"> Access Token </label>
-				<input class="form-control" id="access-token" value="<?php echo $token; ?>" disabled/>
-				<input class="form-control" name="access_token" value="<?php echo $token; ?>" hidden/>
-			</div>
-			<div class="form-group">
-				<label for="app-id"> App ID </label>
-				<input class="form-control" id="app-id" value="<?php echo $pledge_appid; ?>" disabled/>
-				<input class="form-control" name="app_id" value="<?php echo $pledge_appid; ?>" hidden/>
-			</div>
-			<div class="form-group">
-				<label for="event-type"> Event Type ID</label>
-				<input class="form-control" id="event-type" value="<?php echo $eventTypeId ?> " disabled/>
-				<input class="form-control" name="event_type" value="<?php echo $eventTypeId ?> " hidden/>
-			</div>
-			<div class="form-control"> 
-				<input type="submit" name="submit">
-			</div>
-		</form>
+		<div class="card p-5 col-md-8">
+			<form method="post" action="createevent.php">
+				<div class="form-group row">
+					<label class="col-md-3" for="email"> Email </label>
+					<input class="form-control col-md-9" name="email" id="email" value="<?php echo $email; ?>"/>
+				</div>
+				<div class="form-group row">
+					<label class="col-md-3" for="event-id"> Event ID </label>
+					<input class="form-control col-md-9" name="event_id" id="event-id"/>
+				</div>
+				<div class="form-group row">
+					<label class="col-md-3" for="pledge-amount"> Pledge Amount </label>
+					<input class="form-control col-md-9" name="pledge_amount" id="pledge-amount" type="number" />
+				</div>
+				<div class="form-group row">
+					<label class="col-md-3" for="access-token"> Access Token </label>
+					<input class="form-control col-md-9" id="access-token" value="<?php echo $token; ?>" disabled/>
+					<input class="form-control" name="access_token" value="<?php echo $token; ?>" hidden/>
+				</div>
+				<div class="form-group row">
+					<label class="col-md-3" for="app-id"> App ID </label>
+					<input class="form-control col-md-9" id="app-id" value="<?php echo $pledge_appid; ?>" disabled/>
+					<input class="form-control" name="app_id" value="<?php echo $pledge_appid; ?>" hidden/>
+				</div>
+				<div class="form-group row">
+					<label class="col-md-3" for="event-type"> Event Type ID</label>
+					<input class="form-control col-md-9" id="event-type" value="<?php echo $eventTypeId ?> " disabled/>
+					<input class="form-control" name="event_type" value="<?php echo $eventTypeId ?> " hidden/>
+				</div>
+				<div class="form-group"> 
+					<input type="submit" name="submit" class="btn btn-primary">
+				</div>
+			</form>
+		</div>
 	</div> 
 </div>
 <?php
