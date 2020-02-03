@@ -45,7 +45,7 @@ require_once __DIR__ . "/../header.php";
 	<h1> CALENDAR API TEST </h1>
 </div>
 
-<?
+<?php
 echo "<div class='alert alert-success' role='alert'>";
 echo "<h3> Authentication Success </h3>";
 echo "access_token:". $access_token . "<br/>";
