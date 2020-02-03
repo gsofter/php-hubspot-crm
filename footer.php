@@ -1,3 +1,4 @@
+			<!-- End Main Content -->
 			</div>
   		</div>
 	</div>

@@ -43,7 +43,7 @@ $rows = $rowData['objects'];
 		<hr/>
 		<div class="row"> 
 			<div class="container"> 
-				<h3 class="text-center"> Pledge</h3>
+				<h3 class="text-center"> Pledge </h3>
 				<table class="table table-striped">
 					<thead>
 						<th> ID </th>

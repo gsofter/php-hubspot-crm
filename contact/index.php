@@ -1,67 +1,73 @@
 <?php 
-	require_once __DIR__ . '/../header.php';
-?>
-<?php
-/**
-* @param key 	= 9f487cb8-c9fc-4a4a-8b6a-2a2f482261e7
-* @param url 	= https://app.hubspot.com/contacts/6910819/contact/101/
-* @param apiurl = https://api.hubapi.com/contacts/v1/contact/vid/101/profile
-*/
-
+require_once __DIR__ . '/../header.php';
 require_once __DIR__ . '/../api.php';
-$contactResponse = ContactAPI::GetContactProfileById(101);
-$userdata = [];
-echo json_encode($contactResponse);
-exit;
 
-if($contactResponse['status'] != 200) {
-	echo "API server error";
-	exit();
-} else {
-	$data = json_decode($contactResponse['data'], true);
-	$userdata['email'] = $data['properties']['email']['value'];
-	$userdata['mobilephone'] = $data['properties']['mobilephone']['value'];
-	$userdata['firstname'] = $data['properties']['firstname']['value'];
-	$userdata['lastname'] = $data['properties']['lastname']['value'];
-	$userdata['phone'] = $data['properties']['phone']['value'];	
+$testhapikey = "4b050595-94eb-4eff-93fc-7f2e067463dc";
+$response = ContactAPI::GetAllContacts($testhapikey, 5);
+if($response['status'] != 200) {
+	echo "<div class='alert alert-danger' role='alert'>";
+	echo "<h3> Whoops! Something went wrong! </h3>";
+	echo $response['response'];
+	echo "</div>";
+	require_once __DIR__ . '/../footer.php';
+	exit;
 }
 
-$crmResponse = CrmAPI::GetAssociations(101, 9);
-$engagements = [];
-$notes = [];
-$calls = [];
-$tasks = [];
-if($crmResponse['status'] != 200) {
-	echo "API server error";
-	exit();
-} else {
-	$data = json_decode($crmResponse['data'], true);
-	$ids = $data['results'];
-	foreach ($ids as $no => $id) {
-		$response = EngagementAPI::GetEngagement($id);
-		if($response['status'] == 200) {
-			$newEngage = [];
-			// echo $response['data'];
-			$data = json_decode($response['data'], true);
-			if($data['engagement']['type'] == "NOTE") {
-				$newEngage['type'] = $data['engagement']['type'];
-				$newEngage['body'] = $data['metadata']['body'];
-				$newEngage['created_at'] = date('Y/m/d h:i:s', substr($data['engagement']['createdAt'], 0, 10));
-				$newEngage['updated_at'] = date('Y/m/d h:i:s', substr($data['engagement']['lastUpdated'], 0, 10));
-				$notes[] = $newEngage;
-			}
-			else if($data['engagement']['type'] == "CALL") {
-				$newEngage['type'] = $data['engagement']['type'];
-				$newEngage['body'] = $data['metadata']['body'];
-				$newEngage['created_at'] = date('Y/m/d H:i:s', substr($data['engagement']['createdAt'], 0, 10));
-				$newEngage['updated_at'] = date('Y/m/d H:i:s', substr($data['engagement']['lastUpdated'], 0, 10));
-				$calls[] = $newEngage;
-			}
-		}
-	}
-}
+$responseData = json_decode($response['response'], true);
+$contacts = $responseData['contacts'];
 ?>
+<div class="jumbotron text-center">
+	<h1> Contact API Test</h1>
+</div>
 
+<div class="row">
+	<div class="col-md-6">
+		<?php 
+		foreach ($contacts as $id => $contact) {
+			$properties = $contact['properties'];
+			$identities = $contact['identity-profiles'][0]['identities'];
+		?>
+		<div class="card p-5 mb-5">
+			<p> <span> <strong> Profile URL </strong> </span> : 
+				<span> <?php echo $contact['profile-url'] ?></span>
+			</p>
+			<?php foreach($properties as $prop_key => $prop) { ?>
+				<p> <span> <strong> <?php echo $prop_key; ?> </strong> </span> : 
+					<span> <?php echo $prop['value']; ?></span>
+				</p>
+			<?php } ?>
+			<?php foreach($identities as $ident_key => $ident) { ?>
+				<p> <span> <strong> <?php echo $ident['type']; ?> </strong> </span> : 
+					<span> <?php echo $ident['value']; ?></span>
+				</p>
+			<?php } ?>
+		</div>
+		<?php } ?>
+	</div>
+	<div class="col-md-6"> 
+		<div class="card p-5">
+			<form>
+				<div class="form-group row">
+					<label class="col-md-4" for="email"> Email </label>
+					<input type="email" name="email" id="email" class="form-control col-md-8" />
+				</div>
+				<div class="form-group row">
+					<label for="firstname" class="col-md-4"> First Name </label>
+					<input type="firstname" name="firstname" id="firstname" class="form-control col-md-8" />
+				</div>
+				<div class="form-group row">
+					<label for="lastname" class="col-md-4"> Last Name </label>
+					<input type="lastname" name="lastname" id="lastname" class="form-control col-md-8" />
+				</div>
+				<div class="form-group row">
+					<label for="company" class="col-md-4"> Company </label>
+					<input type="company" name="company" id="company" class="form-control col-md-8" />
+				</div>
+				<input type="submit" name="Submit" class="btn btn-primary">
+			</form>
+		</div>
+	</div>
+</div>
 <?php 
 	require_once __DIR__ . '/../footer.php';
 ?>

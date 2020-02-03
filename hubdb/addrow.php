@@ -20,7 +20,7 @@ if($response['status'] == 200) {
 	echo "<h3> One Row has been successfully inserted!</h3>";
 	echo "<p> Check pledge on Test environment!</p>";
 } else {
-	echo "<h3> Insert Failed!</h3>";
+	echo "<h3> Insert Failed! </h3>";
 	echo $response['response'];
 }
 

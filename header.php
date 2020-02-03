@@ -31,7 +31,7 @@
 		          	</li>
 
 		          	<li class="nav-item">
-			            <a class="nav-link" href="/timeline/auth.php">
+			            <a class="nav-link" href="/timeline/index.php">
 			              	Timeline API
 			            </a>
 		          	</li>
